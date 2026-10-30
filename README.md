@@ -31,6 +31,8 @@ When you're done, **Copy Markdown** and paste it into Claude Code, Cursor, an is
 
 ## Install
 
+> **This fork (RussellZager/pagecrit)** adds one fix: keys typed in PageCrit's note box no longer trigger the page's own shortcuts (for example GitHub's `t` file finder). To use it, clone it (`gh repo clone RussellZager/pagecrit ~/code/pagecrit`), open `chrome://extensions`, turn on **Developer mode**, click **Load unpacked** and choose **`~/code/pagecrit/extension`**. Turn off the Web Store copy of PageCrit if you have it, so only one runs. After `git pull`, click **Reload** on the extension card and refresh the page.
+
 1. **[Add PageCrit to Chrome](https://chromewebstore.google.com/detail/pfpjpnccobppojmgmihaachhjlgjndfd)** from the Chrome Web Store. It's free.
 2. Pin **PageCrit** to the toolbar (the puzzle-piece icon).
 3. Open the page you want to review and click the PageCrit button in the toolbar. The panel opens right away. If a page can't be reviewed, the icon shows a red **!** and its tooltip says why.

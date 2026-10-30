@@ -6,7 +6,7 @@
   "description": "Local-first Chrome feedback pins and page text edits for agent handoff",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "test:browser": "node tests/browser.mjs && node tests/stress-core.mjs && node tests/stress-ui.mjs && node tests/limits.mjs && node tests/worker-restart.mjs && node tests/embed.mjs",
+    "test:browser": "node tests/browser.mjs && node tests/stress-core.mjs && node tests/stress-ui.mjs && node tests/limits.mjs && node tests/worker-restart.mjs && node tests/embed.mjs && node tests/hotkeys.mjs",
     "check": "node --check extension/core.js && node --check extension/content.js && node --check extension/export.js && node --check extension/background.js && node --check embed/host.js",
     "package": "node scripts/package.mjs",
     "test:activation": "xvfb-run -a node tests/activation.mjs",

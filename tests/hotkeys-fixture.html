@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Hotkey fixture</title></head>
+<body>
+  <h1 id="target">A page with single-key shortcuts</h1>
+  <input id="finder" placeholder="File finder" aria-label="File finder">
+  <p>Synthetic page. "t" focuses the finder (like GitHub). An annotation tool listens for p, c, r, o, a.</p>
+  <script>
+    window.fired = [];
+    // GitHub-style hotkey: a document keydown listener that ignores real form fields only.
+    document.addEventListener('keydown', event => {
+      if (event.target.closest('input,textarea,select,[contenteditable]')) return;
+      if (event.key === 't') { event.preventDefault(); document.getElementById('finder').focus(); window.fired.push('finder:t'); }
+    });
+    // Annotation-tool style: ignores keys only when the target is an INPUT or TEXTAREA.
+    document.addEventListener('keydown', event => {
+      if (['INPUT', 'TEXTAREA'].includes(event.target.tagName)) return;
+      if ('pcroa'.includes(event.key)) window.fired.push('annotate:' + event.key);
+    });
+    for (const type of ['keypress', 'keyup', 'beforeinput', 'input']) {
+      document.addEventListener(type, event => {
+        if (!['INPUT', 'TEXTAREA'].includes(event.target.tagName)) window.fired.push(type + ':' + (event.key || event.data || ''));
+      });
+    }
+  </script>
+</body>
+</html>

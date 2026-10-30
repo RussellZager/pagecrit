@@ -2407,6 +2407,9 @@ function run() {
   const isolatedEvents = ['keyup', 'keypress', 'input', 'compositionstart', 'compositionupdate', 'compositionend', 'paste', 'cut', 'copy'];
   window.addEventListener('beforeinput', onBeforeInput, true);
   for (const name of isolatedEvents) window.addEventListener(name, isolateEditing, true);
+  // Keys typed in PageCrit's own UI (the note box, its buttons) end at the shadow root. The shadow
+  // root retargets them to the host, so site shortcuts (GitHub "t", annotation tools) would fire.
+  for (const name of ['keydown', 'beforeinput', ...isolatedEvents]) shadow.addEventListener(name, event => event.stopPropagation());
   window.addEventListener('scroll', queuePosition, true);
   function onResize() { if (sidebarShown() !== panel.classList.contains('side')) render(); else placeFloating(); queuePosition(); }
   window.addEventListener('resize', onResize);
